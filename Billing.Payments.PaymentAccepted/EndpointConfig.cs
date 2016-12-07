@@ -12,9 +12,11 @@ namespace Billing.Payments.PaymentAccepted
     {
 	    public void Init()
 	    {
-	        Configure.With()
-	            .DefiningEventsAs(t => t.Namespace != null
-	                                   && t.Namespace.Contains("Events"));
-	    }
+            Configure.With()
+                     .DefiningCommandsAs(t => t.Namespace != null
+                         && t.Namespace.Contains("Commands"))
+                     .DefiningEventsAs(t => t.Namespace != null
+                         && t.Namespace.Contains("Events"));
+        }
     }
 }
