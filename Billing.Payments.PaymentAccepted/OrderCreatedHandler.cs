@@ -33,16 +33,8 @@ namespace Billing.Payments.PaymentAccepted
 
     public static class PaymentProvider
     {
-        private static int Attempts = 0;
-
         public static PaymentConfirmation ChargeCreditCard(CardDetails details, double amount)
         {
-            if (Attempts < 2)
-            {
-                Attempts++;
-                throw new Exception("Service unavailable.");
-            }
-
             return new PaymentConfirmation
             {
                 Status = PaymentStatus.Accepted

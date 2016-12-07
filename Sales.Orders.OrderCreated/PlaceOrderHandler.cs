@@ -22,14 +22,15 @@ namespace Sales.Orders.OrderCreated
                 " made by user: {2}", 
                 string.Join(",", message.ProductIds), message.ShippingTypeId, message.UserId, orderId);
 
-            var orderCreatedEvent = new Messages.Events.OrderCreated
+            var orderCreatedEvent = new Messages.Events.OrderCreated_V2
             {
                 OrderId = orderId,
                 UserId = message.UserId,
                 ProductIds = message.ProductIds,
                 ShippingTypeId = message.ShippingTypeId,
                 TimeStamp = DateTime.Now,
-                Amount = CalculateCostOf(message.ProductIds)
+                Amount = CalculateCostOf(message.ProductIds),
+                AddressId = "AddressID123"
             };
 
             Bus.Publish(orderCreatedEvent);

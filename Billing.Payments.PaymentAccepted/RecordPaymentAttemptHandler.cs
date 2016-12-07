@@ -10,7 +10,7 @@ namespace Billing.Payments.PaymentAccepted
 
         public void Handle(RecordPaymentAttempt message)
         {
-            Database2.SavePaymentAttempt(message.OrderId, message.Status);
+            Database.SavePaymentAttempt(message.OrderId, message.Status);
 
             if (message.Status == PaymentStatus.Accepted)
             {
@@ -23,16 +23,16 @@ namespace Billing.Payments.PaymentAccepted
             }
             else
             {
-                // 
+                // publish payment rejected event
             }
         }
-    }
 
-    public static class Database2
-    {
-        public static void SavePaymentAttempt(string orderId, PaymentStatus status)
+        public static class Database
         {
-            //
+            public static void SavePaymentAttempt(string orderId, PaymentStatus status)
+            {
+                // save to db
+            }
         }
     }
 }
